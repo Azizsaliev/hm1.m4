@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+   <LinearLayout
+    android:background="@color/purple_500"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="70dp"
+       android:orientation="horizontal">
+
+       <TextView
+           android:textColor="@color/white"
+           android:textSize="18sp"
+           android:text="@string/regular"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"/>
+       </LinearLayout>
+
+       <RadioGroup
+           android:layout_margin="20dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+       <RadioButton
+           android:buttonTint="@color/purple_500"
+           android:textColor="@color/purple_500"
+           android:id="@+id/Btn_everyDay"
+           android:text="@string/every_day"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+
+       <RadioButton
+           android:textColor="@color/purple_500"
+           android:buttonTint="@color/purple_500"
+           android:id="@+id/Btn_everyWeek"
+           android:text="@string/every_week"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+
+       <RadioButton
+           android:textColor="@color/purple_500"
+           android:buttonTint="@color/purple_500"
+           android:id="@+id/Btn_everyMonth"
+           android:text="@string/every_month"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+
+       <RadioButton
+           android:textColor="@color/purple_500"
+           android:buttonTint="@color/purple_500"
+           android:id="@+id/Btn_everyYear"
+           android:text="@string/every_year"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+       </RadioGroup>
+
+    <TextView
+        android:id="@+id/cancelBtn"
+        android:textSize="20sp"
+        android:textAlignment="textEnd"
+        android:text="Отменить"
+        android:textColor="@color/purple_500"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>

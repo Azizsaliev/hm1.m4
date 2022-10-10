@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="regular">Регулярность</string>
+    <string name="every_day">Каждый день</string>
+    <string name="every_week">Каждую неделю</string>
+    <string name="every_month">Каждый месяц</string>
+    <string name="every_year">Каждый год</string>
+</resources>
