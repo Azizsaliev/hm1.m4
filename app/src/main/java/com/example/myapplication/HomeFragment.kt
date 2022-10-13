@@ -21,6 +21,7 @@ override fun onCreateView(
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as MainActivity).showToolbar()
         initClicker()
         arguments?.let {
             val model = it.getSerializable("model") as TaskModel
