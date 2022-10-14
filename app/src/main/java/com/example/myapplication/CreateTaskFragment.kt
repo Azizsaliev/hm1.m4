@@ -48,7 +48,6 @@ class CreateTaskFragment : BottomSheetDialogFragment() {
         }
         dialog.show()
         binding.cancelBtn.setOnClickListener{
-
             dialog.dismiss()
         }
     }
@@ -60,6 +59,7 @@ class CreateTaskFragment : BottomSheetDialogFragment() {
                 val bundle = Bundle()
                 bundle.putSerializable("model",TaskModel(taskEd.text.toString(),date,regular))
                 findNavController().navigate(R.id.homeFragment,bundle)
+                dismiss()
             }
             regularBtn.setOnClickListener{
                 showRegularDialog()

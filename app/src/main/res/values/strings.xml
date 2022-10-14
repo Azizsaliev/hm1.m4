@@ -8,4 +8,7 @@
     <string name="every_week">Каждую неделю</string>
     <string name="every_month">Каждый месяц</string>
     <string name="every_year">Каждый год</string>
+    <string name="date">Дата</string>
+    <string name="regular1">Регулярность</string>
+    <string name="ok">Принять</string>
 </resources>

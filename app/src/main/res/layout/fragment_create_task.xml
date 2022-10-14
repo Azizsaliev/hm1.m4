@@ -8,25 +8,38 @@
     tools:context=".CreateTaskFragment">
 
     <EditText
+      android:background="@drawable/violet_rectangle"
       android:id="@+id/taskEd"
-      android:hint="task"
+      android:hint="Введите задачу"
+        android:layout_marginTop="12dp"
+      android:textAlignment="center"
+      android:padding="12dp"
       android:textColor="@color/black"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"/>
     <LinearLayout
+        android:layout_marginTop="18dp"
       android:orientation="horizontal"
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
 
     <Button
+        android:drawableEnd="@drawable/ic_calendar"
+        android:layout_marginEnd="10dp"
+        android:paddingHorizontal="20dp"
+        android:background="@drawable/violet_rectangle"
         android:id="@+id/dateBtn"
-        android:text="date"
+        android:text="@string/date"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
+        android:paddingHorizontal="20dp"
+        android:drawableEnd="@drawable/ic_keyboard_arrow"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/violet_rectangle"
         android:id="@+id/regularBtn"
-        android:text="regular"
+        android:text="@string/regular1"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -34,9 +47,14 @@
    </LinearLayout>
 
     <Button
-        android:text="Принять"
+        android:text="@string/ok"
+        android:background="@drawable/violet_rectangle_solid"
+        android:textColor="@color/white"
+        android:layout_marginTop="26dp"
         android:id="@+id/applyBtn"
-        android:layout_width="match_parent"
+        android:paddingHorizontal="40dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
 

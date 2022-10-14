@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,6 +25,12 @@ class BoardFragment : Fragment(), itemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (requireActivity() as MainActivity).hideToolbar()
+        val preferences = requireActivity().getSharedPreferences("setting",Context.MODE_PRIVATE)
+        val isShow: Boolean = preferences.getBoolean("isShow",false)
+        if (isShow){
+           findNavController().navigate(R.id.action_boardFragment_to_homeFragment)
+        }
+
         val list = arrayListOf<BoardModel>()
         list.add(BoardModel(R.drawable.board_first,"Экономь время","Дальше"))
         list.add(BoardModel(R.drawable.board_second,"Достигай целей","Дальше"))
@@ -33,11 +40,13 @@ class BoardFragment : Fragment(), itemClickListener {
         binding.dotsIndicator.attachTo(binding.viewPager)
 
     }
-    override fun last() {
-        findNavController().navigate(R.id.action_boardFragment_to_homeFragment)
-    }
-
     override fun next() {
         binding.viewPager.currentItem = binding.viewPager.currentItem + 1
     }
+    override fun last() {
+        val preferences = requireActivity().getSharedPreferences("setting",Context.MODE_PRIVATE)
+        preferences.edit().putBoolean("isShow",true).apply()
+        findNavController().navigate(R.id.action_boardFragment_to_homeFragment)
+    }
+
 }
