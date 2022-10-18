@@ -2,11 +2,11 @@ package com.example.myapplication
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.constraintlayout.helper.widget.Carousel
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.TaskItemBinding
+import com.example.myapplication.room.TaskModel
 
-class TaskAdapter( private val list:ArrayList<TaskModel>) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+class TaskAdapter( private val list: List <TaskModel>,private val listener: TaskItemClick) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
       return TaskViewHolder(TaskItemBinding.inflate(LayoutInflater.from(parent.context),parent,false))
@@ -19,11 +19,18 @@ class TaskAdapter( private val list:ArrayList<TaskModel>) : RecyclerView.Adapter
     override fun getItemCount(): Int {
       return list.size
     }
-    class TaskViewHolder(val binding: TaskItemBinding) :RecyclerView.ViewHolder(binding.root){
+    inner class TaskViewHolder(val binding: TaskItemBinding) :RecyclerView.ViewHolder(binding.root){
         fun onBind(taskModel: TaskModel) {
             binding.titleTv.text = taskModel.task
             binding.regularTv.text = taskModel.regular
             binding.dateTv.text = taskModel.date
+            itemView.setOnClickListener {
+                listener.itemClick(taskModel)
+            }
+            itemView.setOnLongClickListener{
+                listener.deleteItemClick(taskModel)
+                false
+            }
         }
 
 

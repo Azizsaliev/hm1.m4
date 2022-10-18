@@ -8,14 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.databinding.FragmentCreateTaskBinding
 import com.example.myapplication.databinding.RegularDialogBinding
+import com.example.myapplication.room.TaskModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import okhttp3.internal.concurrent.Task
 import java.util.*
-import javax.xml.datatype.DatatypeConstants.MONTHS
 
 
 class CreateTaskFragment : BottomSheetDialogFragment() {
@@ -24,6 +23,7 @@ class CreateTaskFragment : BottomSheetDialogFragment() {
      var task = ""
      var date = ""
      var regular = ""
+     var taskModel : TaskModel? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +34,14 @@ class CreateTaskFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initClicker()
+        if(tag == "update"){
+            arguments?.let {
+                taskModel = it.getSerializable("model") as TaskModel
+                binding.taskEd.setText(taskModel!!.task)
+                binding.dateBtn.text = taskModel!!.date
+                binding.regularBtn.text = taskModel!!.regular
+            }
+        }
     }
 
     private fun showRegularDialog() {
@@ -56,9 +64,21 @@ class CreateTaskFragment : BottomSheetDialogFragment() {
     private fun initClicker() {
         with(binding){
             applyBtn.setOnClickListener{
-                val bundle = Bundle()
-                bundle.putSerializable("model",TaskModel(taskEd.text.toString(),date,regular))
-                findNavController().navigate(R.id.homeFragment,bundle)
+                if (tag == "update") {
+                    val model = TaskModel(
+                        id = taskModel!!.id,
+                        task = taskEd.text.toString(),
+                        date = dateBtn.text.toString(),
+                        regular = regularBtn.text.toString()
+
+                    )
+                    App.appDataDataBase.taskDao().update(model)
+                } else {
+                    val model = TaskModel(task = taskEd.text.toString(), date = date, regular = regular)
+                    App.appDataDataBase.taskDao().insert(model)
+
+                }
+
                 dismiss()
             }
             regularBtn.setOnClickListener{
